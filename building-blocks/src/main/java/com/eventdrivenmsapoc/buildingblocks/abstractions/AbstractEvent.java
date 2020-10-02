@@ -1,4 +1,4 @@
-package com.eventdrivenmsapoc.loanapplicationservice.kafka;
+package com.eventdrivenmsapoc.buildingblocks.abstractions;
 
 public abstract class AbstractEvent {
     private String userId;
@@ -22,5 +22,9 @@ public abstract class AbstractEvent {
 
     public String getEventName() {
         return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 }

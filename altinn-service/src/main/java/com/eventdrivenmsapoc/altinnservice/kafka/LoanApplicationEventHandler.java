@@ -7,8 +7,8 @@ import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.eventdrivenmsapoc.altinnservice.events.LoanApplicationCreatedEvent;
-import com.eventdrivenmsapoc.altinnservice.events.LoanApplicationUpdatedEvent;
+import com.eventdrivenmsapoc.buildingblocks.loanapplication.LoanApplicationCreatedEvent;
+import com.eventdrivenmsapoc.buildingblocks.loanapplication.LoanApplicationUpdatedEvent;
 
 @Component
 @KafkaListener(topics = "${loanapplications.topic.name}")

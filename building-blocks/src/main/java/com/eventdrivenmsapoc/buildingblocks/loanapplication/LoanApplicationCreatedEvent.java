@@ -1,16 +1,20 @@
-package com.eventdrivenmsapoc.loanapplicationservice.loanapplications;
+package com.eventdrivenmsapoc.buildingblocks.loanapplication;
 
 import java.util.UUID;
 
-import com.eventdrivenmsapoc.loanapplicationservice.kafka.AbstractEvent;
+import com.eventdrivenmsapoc.buildingblocks.abstractions.AbstractEvent;
+
 
 public class LoanApplicationCreatedEvent extends AbstractEvent {
 
     private String productType;
     private String caseId;
 
+    public LoanApplicationCreatedEvent() {
+    }
+
     public LoanApplicationCreatedEvent(String productType, String userId) {
-        super(userId, LoanApplicationCreatedEvent.class.getSimpleName());
+        super(userId, LoanApplicationCreatedEvent.class.getName());
         this.productType = productType;
         this.caseId = UUID.randomUUID().toString();
     }
@@ -39,3 +43,4 @@ public class LoanApplicationCreatedEvent extends AbstractEvent {
                 '}';
     }
 }
+

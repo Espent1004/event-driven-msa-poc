@@ -27,7 +27,9 @@ services:
     depends_on:
       - kafka
   postgres:
-    build: postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "5432:5432"
     environment:

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import com.eventdrivenmsapoc.buildingblocks.abstractions.AbstractEvent;
+
 @Service
 public class MessageProducerImpl implements MessageProducer{
 
@@ -28,21 +30,5 @@ public class MessageProducerImpl implements MessageProducer{
 
         kafkaTemplate.send(message);
 
-
-/*        ListenableFuture<SendResult<String, AbstractEvent>> future = kafkaTemplate.send(topicName, event.getEventName(), event);
-
-        future.addCallback(new ListenableFutureCallback<SendResult<String, AbstractEvent>>() {
-
-            @Override
-            public void onSuccess(SendResult<String, AbstractEvent> result) {
-                System.out.println("Sent message=[" + event + "] with offset=[" + result.getRecordMetadata()
-                        .offset() + "]");
-            }
-
-            @Override
-            public void onFailure(Throwable ex) {
-                System.out.println("Unable to send message=[" + event + "] due to : " + ex.getMessage());
-            }
-        });*/
     }
 }

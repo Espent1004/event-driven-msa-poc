@@ -13,6 +13,8 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
+import com.eventdrivenmsapoc.buildingblocks.abstractions.AbstractEvent;
+
 @Configuration
 public class KafkaProducerConfig {
 

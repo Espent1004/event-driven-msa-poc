@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.eventdrivenmsapoc.buildingblocks.loanapplication.LoanApplicationCreatedEvent;
+import com.eventdrivenmsapoc.buildingblocks.loanapplication.LoanApplicationUpdatedEvent;
 import com.eventdrivenmsapoc.loanapplicationservice.kafka.MessageProducer;
 
 @RestController

@@ -15,6 +15,8 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
+import com.eventdrivenmsapoc.buildingblocks.abstractions.AbstractEvent;
+
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
@@ -36,9 +38,9 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ConsumerFactory<String, AbstractEvent> consumerFactory() {
-        /*JsonDeserializer<AbstractEvent> deserializer = new JsonDeserializer<>(AbstractEvent.class, false);
-        deserializer.addTrustedPackages("*");*/
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(), new AbstractEventDeserializer());
+        JsonDeserializer<AbstractEvent> deserializer = new JsonDeserializer<>(AbstractEvent.class);
+        deserializer.addTrustedPackages("*");
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(), deserializer);
     }
 
     @Bean

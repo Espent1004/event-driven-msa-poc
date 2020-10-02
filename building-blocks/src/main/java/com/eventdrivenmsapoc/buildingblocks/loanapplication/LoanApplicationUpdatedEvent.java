@@ -1,6 +1,7 @@
-package com.eventdrivenmsapoc.altinnservice.events;
+package com.eventdrivenmsapoc.buildingblocks.loanapplication;
 
-import com.eventdrivenmsapoc.altinnservice.kafka.AbstractEvent;
+
+import com.eventdrivenmsapoc.buildingblocks.abstractions.AbstractEvent;
 
 public class LoanApplicationUpdatedEvent extends AbstractEvent {
     private String productType;

@@ -13,6 +13,8 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.eventdrivenmsapoc.buildingblocks.abstractions.AbstractEvent;
+
 @Configuration
 public class KafkaProducerConfig {
 
