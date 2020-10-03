@@ -6,28 +6,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eventdrivenmsapoc.buildingblocks.loanapplication.LoanApplicationCreatedEvent;
-import com.eventdrivenmsapoc.buildingblocks.loanapplication.LoanApplicationUpdatedEvent;
-import com.eventdrivenmsapoc.loanapplicationservice.kafka.MessageProducer;
-
 @RestController
 @RequestMapping("loanapplications")
 public class LoanApplicationResource {
 
-    private final MessageProducer messageProducer;
+    private final LoanApplicationService loanApplicationService;
 
     @Autowired
-    public LoanApplicationResource(MessageProducer messageProducer) {
-        this.messageProducer = messageProducer;
+    public LoanApplicationResource(LoanApplicationService loanApplicationService) {
+        this.loanApplicationService = loanApplicationService;
     }
 
     @PostMapping(path = "/case", consumes = "application/json", produces = "application/json")
-    public void createLoanApplication() {
-        messageProducer.publishEvent(new LoanApplicationCreatedEvent("HOUSE_LOAN", "1234"));
+    public LoanApplication createLoanApplication() {
+        return loanApplicationService.createLoanApplication("HOUSE_LOAN", 123456789L);
     }
 
     @PutMapping(path = "/case/{caseid}/update", consumes = "application/json", produces = "application/json")
     public void updateLoanApplication() {
-        messageProducer.publishEvent(new LoanApplicationUpdatedEvent("HOUSE_LOAN", "1234", "45148", 100000));
+        //messageProducer.publishEvent(new LoanApplicationUpdatedEvent("HOUSE_LOAN", "1234", "45148", 100000));
     }
 }
