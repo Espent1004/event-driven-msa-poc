@@ -16,7 +16,7 @@ public class MessageProducerImpl implements MessageProducer{
     @Autowired
     private KafkaTemplate<String, AbstractEvent> kafkaTemplate;
 
-    @Value(value = "${loanapplications.topic.name}")
+    @Value(value = "${cases.topic.name}")
     private String topicName;
     private static final String  EVENT_NAME = "event_name";
 

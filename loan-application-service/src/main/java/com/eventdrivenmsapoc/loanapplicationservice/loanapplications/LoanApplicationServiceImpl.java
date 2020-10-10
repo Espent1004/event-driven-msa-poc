@@ -1,6 +1,7 @@
 package com.eventdrivenmsapoc.loanapplicationservice.loanapplications;
 
-import java.util.Random;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
         this.loanApplicationRepository = loanApplicationRepository;
     }
 
-    //new Random().nextLong()
     @Override
     public LoanApplication createLoanApplication(String productType, Long userId) {
         LoanApplication loanApplication = new LoanApplication(productType, userId, null,null);
@@ -29,5 +29,14 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
         messageProducer.publishEvent(new LoanApplicationCreatedEvent(productType, userId.toString(), orderId));
         loanApplication.setOrderId(orderId);
         return loanApplication;
+    }
+
+    @Override
+    public void updateLoanApplicationWithCaseId(Long orderId, Long caseId) {
+        Optional<LoanApplication> optionalLoanApplication = loanApplicationRepository.findById(orderId);
+        optionalLoanApplication.ifPresent(loanApplication -> {
+            loanApplication.setCaseId(caseId);
+            loanApplicationRepository.save(loanApplication);
+        });
     }
 }

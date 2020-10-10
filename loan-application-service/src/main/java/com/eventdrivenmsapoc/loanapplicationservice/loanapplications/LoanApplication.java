@@ -18,7 +18,8 @@ public class LoanApplication {
             sequenceName="loan_application_order_id_seq",
             allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator="loan_application_order_id_seq")    private Long orderId;
+            generator="loan_application_order_id_seq")
+    private Long orderId;
     private Long caseId;
 
     public LoanApplication(String productType, Long userId, Long orderId, Long caseId) {
