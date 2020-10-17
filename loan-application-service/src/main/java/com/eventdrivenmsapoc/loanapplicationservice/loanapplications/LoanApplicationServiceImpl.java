@@ -3,6 +3,8 @@ package com.eventdrivenmsapoc.loanapplicationservice.loanapplications;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 
     private final MessageProducer messageProducer;
     private final LoanApplicationRepository loanApplicationRepository;
+    private final Logger logger = LoggerFactory.getLogger(LoanApplicationServiceImpl.class);
 
     @Autowired
     public LoanApplicationServiceImpl(MessageProducer messageProducer,
@@ -26,7 +29,9 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
     public LoanApplication createLoanApplication(String productType, Long userId) {
         LoanApplication loanApplication = new LoanApplication(productType, userId, null,null);
         Long orderId = loanApplicationRepository.save(loanApplication).getOrderId();
-        messageProducer.publishEvent(new LoanApplicationCreatedEvent(productType, userId.toString(), orderId));
+        LoanApplicationCreatedEvent event = new LoanApplicationCreatedEvent(productType, userId.toString(), orderId);
+        messageProducer.publishEvent(event);
+        logger.info("Publishing event: {}", event);
         loanApplication.setOrderId(orderId);
         return loanApplication;
     }

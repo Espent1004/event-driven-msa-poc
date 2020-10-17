@@ -41,4 +41,13 @@ public class CaseCreatedEvent extends AbstractEvent {
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
+
+    @Override
+    public String toString() {
+        return "CaseCreatedEvent{" +
+                "caseId=" + caseId +
+                ", productType='" + productType + '\'' +
+                ", orderId=" + orderId +
+                '}';
+    }
 }

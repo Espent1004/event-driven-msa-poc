@@ -42,5 +42,14 @@ public class LoanApplicationUpdatedEvent extends AbstractEvent {
     public void setEquity(int equity) {
         this.equity = equity;
     }
+
+    @Override
+    public String toString() {
+        return "LoanApplicationUpdatedEvent{" +
+                "productType='" + productType + '\'' +
+                ", caseId='" + caseId + '\'' +
+                ", equity=" + equity +
+                '}';
+    }
 }
 
